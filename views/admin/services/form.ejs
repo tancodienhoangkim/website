@@ -1,0 +1,28 @@
+<h2><%= service ? 'Sửa' : 'Thêm' %> dịch vụ</h2>
+<div class="card"><div class="card-body">
+  <form action="<%= service ? '/admin/services/' + service._id + '?_method=PUT' : '/admin/services' %>" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label>Tên dịch vụ <span class="text-danger">*</span></label>
+      <input type="text" name="title" class="form-control" value="<%= service ? service.title : '' %>" required>
+    </div>
+    <div class="form-group">
+      <label>Mô tả</label>
+      <textarea name="description" class="form-control tinymce" rows="6"><%= service ? service.description : '' %></textarea>
+    </div>
+    <div class="form-group">
+      <label>Icon (Font Awesome, VD: fas fa-pencil-ruler)</label>
+      <input type="text" name="icon" class="form-control" value="<%= service ? service.icon : '' %>">
+    </div>
+    <div class="form-group">
+      <label>Ảnh</label>
+      <input type="file" name="image" class="form-control-file">
+      <% if (service && service.image) { %><img src="<%= service.image %>" alt="" class="mt-2" style="max-width:200px;"><% } %>
+    </div>
+    <div class="row">
+      <div class="col-md-6"><div class="form-group"><label>Thứ tự</label><input type="number" name="order" class="form-control" value="<%= service ? service.order : 0 %>"></div></div>
+      <div class="col-md-6"><div class="form-group"><label>Trạng thái</label><select name="status" class="form-control"><option value="draft" <%= service && service.status === 'draft' ? 'selected' : '' %>>Nháp</option><option value="published" <%= service && service.status === 'published' ? 'selected' : '' %>>Xuất bản</option></select></div></div>
+    </div>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Lưu</button>
+    <a href="/admin/services" class="btn btn-secondary">Hủy</a>
+  </form>
+</div></div>

@@ -1,0 +1,44 @@
+<h2><%= project ? 'Sửa' : 'Thêm' %> dự án</h2>
+<div class="card"><div class="card-body">
+  <form action="<%= project ? '/admin/projects/' + project._id + '?_method=PUT' : '/admin/projects' %>" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label>Tên dự án <span class="text-danger">*</span></label>
+      <input type="text" name="title" class="form-control" value="<%= project ? project.title : '' %>" required>
+    </div>
+    <div class="form-group">
+      <label>Mô tả</label>
+      <textarea name="description" class="form-control tinymce" rows="6"><%= project ? project.description : '' %></textarea>
+    </div>
+    <div class="row">
+      <div class="col-md-6"><div class="form-group"><label>Danh mục</label><select name="category" class="form-control"><option value="">— Chọn —</option><% categories.forEach(c => { %><option value="<%= c._id %>" <%= project && project.category && project.category.toString() === c._id.toString() ? 'selected' : '' %>>[<%= c.type %>] <%= c.name %></option><% }) %></select></div></div>
+      <div class="col-md-6"><div class="form-group"><label>Phong cách</label><select name="style" class="form-control"><option value="">— Chọn —</option><option value="tan-co-dien" <%= project && project.style === 'tan-co-dien' ? 'selected' : '' %>>Tân cổ điển</option><option value="hien-dai" <%= project && project.style === 'hien-dai' ? 'selected' : '' %>>Hiện đại</option><option value="co-dien-phap" <%= project && project.style === 'co-dien-phap' ? 'selected' : '' %>>Cổ điển Pháp</option><option value="dia-trung-hai" <%= project && project.style === 'dia-trung-hai' ? 'selected' : '' %>>Địa Trung Hải</option></select></div></div>
+    </div>
+    <div class="row">
+      <div class="col-md-4"><div class="form-group"><label>Loại công trình</label><select name="type" class="form-control"><option value="">— Chọn —</option><option value="biet-thu" <%= project && project.type === 'biet-thu' ? 'selected' : '' %>>Biệt thự</option><option value="nha-pho" <%= project && project.type === 'nha-pho' ? 'selected' : '' %>>Nhà phố</option><option value="lau-dai" <%= project && project.type === 'lau-dai' ? 'selected' : '' %>>Lâu đài</option><option value="dinh-thu" <%= project && project.type === 'dinh-thu' ? 'selected' : '' %>>Dinh thự</option></select></div></div>
+      <div class="col-md-4"><div class="form-group"><label>Diện tích</label><input type="text" name="area" class="form-control" value="<%= project ? project.area : '' %>" placeholder="VD: 200m2"></div></div>
+      <div class="col-md-4"><div class="form-group"><label>Địa điểm</label><input type="text" name="location" class="form-control" value="<%= project ? project.location : '' %>" placeholder="VD: Hà Nội"></div></div>
+    </div>
+    <div class="form-group">
+      <label>Video YouTube URL</label>
+      <input type="text" name="videoUrl" class="form-control" value="<%= project ? project.videoUrl : '' %>" placeholder="https://www.youtube.com/watch?v=...">
+    </div>
+    <div class="form-group">
+      <label>Ảnh dự án (chọn nhiều)</label>
+      <input type="file" name="images" class="form-control-file" multiple accept="image/*">
+      <% if (project && project.images.length) { %>
+        <div class="mt-2 d-flex flex-wrap">
+          <% project.images.forEach(img => { %>
+            <div class="mr-2 mb-2"><img src="<%= img %>" alt="" style="max-width:120px;max-height:80px;object-fit:cover;border:1px solid #ddd;border-radius:4px;"><input type="hidden" name="existingImages" value="<%= img %>"></div>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+    <div class="row">
+      <div class="col-md-4"><div class="form-group"><label>Thứ tự</label><input type="number" name="order" class="form-control" value="<%= project ? project.order : 0 %>"></div></div>
+      <div class="col-md-4"><div class="form-group"><label>Trạng thái</label><select name="status" class="form-control"><option value="draft" <%= project && project.status === 'draft' ? 'selected' : '' %>>Nháp</option><option value="published" <%= project && project.status === 'published' ? 'selected' : '' %>>Xuất bản</option></select></div></div>
+      <div class="col-md-4"><div class="form-group"><label>&nbsp;</label><div class="form-check mt-2"><input type="checkbox" name="featured" class="form-check-input" id="featured" <%= project && project.featured ? 'checked' : '' %>><label class="form-check-label" for="featured">Nổi bật</label></div></div></div>
+    </div>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Lưu</button>
+    <a href="/admin/projects" class="btn btn-secondary">Hủy</a>
+  </form>
+</div></div>

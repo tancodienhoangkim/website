@@ -1,0 +1,12 @@
+<div class="project-card" data-aos="fade-up">
+  <a href="/du-an/<%= project.slug %>">
+    <div class="project-card-img">
+      <img src="<%= project.thumbnail || 'https://via.placeholder.com/600x400' %>" alt="<%= project.title %>" loading="lazy">
+      <div class="project-card-overlay"><i class="fas fa-search-plus"></i></div>
+    </div>
+    <div class="project-card-info">
+      <h4><%= project.title %></h4>
+      <% if (project.location) { %><span class="text-muted"><i class="fas fa-map-marker-alt"></i> <%= project.location %></span><% } %>
+    </div>
+  </a>
+</div>

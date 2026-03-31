@@ -1,0 +1,13 @@
+<section class="page-header" style="background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('<%= post.thumbnail || 'https://picsum.photos/seed/blogd/1920/400' %>');background-size:cover;background-position:center;">
+  <div class="container text-center text-white py-5"><h1><%= post.title %></h1><p><i class="fas fa-calendar"></i> <%= post.createdAt.toLocaleDateString('vi-VN') %></p></div>
+</section>
+<section class="py-5"><div class="container"><div class="row">
+  <div class="col-lg-8">
+    <article class="blog-content"><%- post.content %></article>
+    <% if (post.tags.length) { %><div class="mt-4"><% post.tags.forEach(tag => { %><span class="badge badge-secondary mr-1"><%= tag %></span><% }) %></div><% } %>
+  </div>
+  <div class="col-lg-4">
+    <% if (related.length) { %><h5>Bài viết liên quan</h5>
+    <% related.forEach(r => { %><div class="card mb-3"><div class="card-body p-2"><a href="/tin-tuc/<%= r.slug %>"><%= r.title %></a><small class="text-muted d-block"><%= r.createdAt.toLocaleDateString('vi-VN') %></small></div></div><% }) %><% } %>
+  </div>
+</div></div></section>

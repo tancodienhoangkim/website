@@ -1,0 +1,12 @@
+<section class="page-header" style="background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('<%= service.image || 'https://picsum.photos/seed/svc/1920/400' %>');background-size:cover;background-position:center;">
+  <div class="container text-center text-white py-5"><h1><%= service.title %></h1></div>
+</section>
+<section class="py-5"><div class="container"><div class="row">
+  <div class="col-lg-8"><%- service.description %></div>
+  <div class="col-lg-4"><div class="card"><div class="card-body">
+    <h5>Liên hệ tư vấn</h5>
+    <p><i class="fas fa-phone-alt"></i> <%= settings.phone || '' %></p>
+    <p><i class="fas fa-envelope"></i> <%= settings.email || '' %></p>
+    <a href="/lien-he" class="btn btn-primary btn-block">Nhận tư vấn miễn phí</a>
+  </div></div></div>
+</div></div></section>

@@ -1,0 +1,50 @@
+.admin-sidebar {
+  width: 220px;
+  min-height: calc(100vh - 56px);
+  padding-top: 1rem;
+  flex-shrink: 0;
+}
+.admin-sidebar .nav-link {
+  color: #adb5bd;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+}
+.admin-sidebar .nav-link:hover,
+.admin-sidebar .nav-link.active {
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+.admin-sidebar .nav-link i {
+  width: 20px;
+  margin-right: 8px;
+  text-align: center;
+}
+.admin-content {
+  flex: 1;
+  min-width: 0;
+  background: #f4f6f9;
+  min-height: calc(100vh - 56px);
+}
+.admin-content h2 {
+  margin-bottom: 1.5rem;
+}
+.table img {
+  max-width: 80px;
+  max-height: 50px;
+  object-fit: cover;
+}
+.login-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #343a40;
+}
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}

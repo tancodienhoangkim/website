@@ -1,0 +1,32 @@
+<h2><%= category ? 'Sửa' : 'Thêm' %> danh mục</h2>
+<div class="card"><div class="card-body">
+  <form action="<%= category ? '/admin/categories/' + category._id + '?_method=PUT' : '/admin/categories' %>" method="POST">
+    <div class="form-group">
+      <label>Tên danh mục <span class="text-danger">*</span></label>
+      <input type="text" name="name" class="form-control" value="<%= category ? category.name : '' %>" required>
+    </div>
+    <div class="form-group">
+      <label>Loại <span class="text-danger">*</span></label>
+      <select name="type" class="form-control" required>
+        <option value="architecture" <%= category && category.type === 'architecture' ? 'selected' : '' %>>Kiến trúc</option>
+        <option value="interior" <%= category && category.type === 'interior' ? 'selected' : '' %>>Nội thất</option>
+        <option value="construction" <%= category && category.type === 'construction' ? 'selected' : '' %>>Thi công</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Danh mục cha</label>
+      <select name="parent" class="form-control">
+        <option value="">— Không có —</option>
+        <% parents.forEach(p => { %>
+          <option value="<%= p._id %>" <%= category && category.parent && category.parent.toString() === p._id.toString() ? 'selected' : '' %>><%= p.name %></option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Thứ tự</label>
+      <input type="number" name="order" class="form-control" value="<%= category ? category.order : 0 %>">
+    </div>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Lưu</button>
+    <a href="/admin/categories" class="btn btn-secondary">Hủy</a>
+  </form>
+</div></div>

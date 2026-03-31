@@ -1,0 +1,13 @@
+<section class="page-header" style="background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://picsum.photos/seed/services/1920/400');background-size:cover;background-position:center;">
+  <div class="container text-center text-white py-5"><h1>Dịch vụ</h1></div>
+</section>
+<section class="py-5"><div class="container"><div class="row">
+  <% services.forEach(s => { %>
+  <div class="col-md-6 mb-4" data-aos="fade-up">
+    <div class="card h-100">
+      <% if (s.image) { %><img src="<%= s.image %>" class="card-img-top" alt="<%= s.title %>"><% } %>
+      <div class="card-body"><h4><% if (s.icon) { %><i class="<%= s.icon %>"></i> <% } %><%= s.title %></h4><%- s.description %><a href="/dich-vu/<%= s.slug %>" class="btn btn-outline-primary mt-2">Chi tiết</a></div>
+    </div>
+  </div>
+  <% }) %>
+</div></div></section>

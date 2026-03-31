@@ -1,0 +1,144 @@
+<section class="hero-section">
+  <div class="owl-carousel hero-carousel">
+    <% featuredProjects.slice(0, 3).forEach(p => { %>
+    <div class="hero-slide" style="background-image: url('<%= p.thumbnail || 'https://picsum.photos/1920/700' %>')">
+      <div class="hero-overlay"><div class="container">
+        <h1 data-aos="fade-up">Thiết kế tận tâm — Thi công tận lực</h1>
+        <p data-aos="fade-up" data-aos-delay="200"><%= p.title %></p>
+        <a href="/du-an/<%= p.slug %>" class="btn btn-primary btn-lg" data-aos="fade-up" data-aos-delay="400">Xem chi tiết</a>
+      </div></div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+
+<section class="section-services py-5">
+  <div class="container text-center">
+    <h2 class="section-title" data-aos="fade-up">Dịch vụ của chúng tôi</h2>
+    <div class="service-tabs mt-4" data-aos="fade-up">
+      <ul class="nav nav-pills justify-content-center mb-4">
+        <% services.forEach((s, i) => { %>
+        <li class="nav-item"><a class="nav-link <%= i === 0 ? 'active' : '' %>" data-toggle="pill" href="#service-<%= i %>"><% if (s.icon) { %><i class="<%= s.icon %>"></i> <% } %><%= s.title %></a></li>
+        <% }) %>
+      </ul>
+      <div class="tab-content">
+        <% services.forEach((s, i) => { %>
+        <div class="tab-pane fade <%= i === 0 ? 'show active' : '' %>" id="service-<%= i %>">
+          <div class="row align-items-center">
+            <div class="col-md-6"><% if (s.image) { %><img src="<%= s.image %>" alt="<%= s.title %>" class="img-fluid rounded"><% } %></div>
+            <div class="col-md-6 text-left"><h3><%= s.title %></h3><%- s.description %><a href="/dich-vu/<%= s.slug %>" class="btn btn-outline-primary mt-2">Tìm hiểu thêm</a></div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-portfolio py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title text-center" data-aos="fade-up">1000+ Mẫu Biệt Thự Đẳng Cấp</h2>
+    <div class="row mt-4">
+      <% featuredProjects.forEach(p => { %>
+      <div class="col-md-4 mb-4"><%- include('../partials/project-card', { project: p }) %></div>
+      <% }) %>
+    </div>
+    <div class="text-center mt-3"><a href="/thiet-ke-kien-truc" class="btn btn-outline-primary">Xem tất cả</a></div>
+  </div>
+</section>
+
+<section class="section-mansions py-5">
+  <div class="container">
+    <h2 class="section-title text-center" data-aos="fade-up">Lâu Đài & Dinh Thự</h2>
+    <div class="row mt-4">
+      <% var mansions = featuredProjects.filter(p => p.type === 'lau-dai' || p.type === 'dinh-thu'); %>
+      <% (mansions.length ? mansions : featuredProjects).slice(0, 3).forEach(p => { %>
+      <div class="col-md-4 mb-4"><%- include('../partials/project-card', { project: p }) %></div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section-interior py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title text-center" data-aos="fade-up">Thiết Kế Nội Thất</h2>
+    <div class="row mt-4">
+      <% interiorProjects.slice(0, 3).forEach(p => { %>
+      <div class="col-md-4 mb-4"><%- include('../partials/project-card', { project: p }) %></div>
+      <% }) %>
+    </div>
+    <div class="text-center mt-3"><a href="/thiet-ke-noi-that" class="btn btn-outline-primary">Xem tất cả</a></div>
+  </div>
+</section>
+
+<section class="section-construction py-5">
+  <div class="container">
+    <h2 class="section-title text-center" data-aos="fade-up">Dự Án Thi Công</h2>
+    <div class="owl-carousel construction-carousel mt-4">
+      <% constructionProjects.forEach(p => { %>
+      <div class="item"><%- include('../partials/project-card', { project: p }) %></div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<% if (videosProjects.length) { %>
+<section class="section-video py-5 bg-dark text-white">
+  <div class="container">
+    <h2 class="section-title text-center" data-aos="fade-up">Video Dự Án</h2>
+    <div class="row mt-4">
+      <% videosProjects.slice(0, 3).forEach(p => { %>
+      <div class="col-md-4 mb-4" data-aos="fade-up">
+        <a href="<%= p.videoUrl %>" data-fancybox="videos" class="video-thumb">
+          <img src="<%= p.thumbnail %>" alt="<%= p.title %>" class="img-fluid rounded">
+          <div class="video-play-icon"><i class="fas fa-play"></i></div>
+        </a>
+        <h5 class="mt-2"><%= p.title %></h5>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<section class="section-testimonials py-5">
+  <div class="container">
+    <h2 class="section-title text-center" data-aos="fade-up">Khách Hàng Nói Gì</h2>
+    <div class="owl-carousel testimonial-carousel mt-4">
+      <% testimonials.forEach(t => { %>
+      <div class="testimonial-item text-center">
+        <div class="testimonial-avatar"><% if (t.avatar) { %><img src="<%= t.avatar %>" alt="<%= t.name %>"><% } else { %><i class="fas fa-user-circle"></i><% } %></div>
+        <p class="testimonial-text">"<%= t.content %>"</p>
+        <h5><%= t.name %></h5><span class="text-muted"><%= t.role %></span>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section-stats py-5 bg-primary text-white">
+  <div class="container"><div class="row text-center">
+    <div class="col-md-3 col-6 mb-3" data-aos="fade-up"><div class="stat-number" data-count="1000">0</div><div class="stat-label">Dự án hoàn thành</div></div>
+    <div class="col-md-3 col-6 mb-3" data-aos="fade-up" data-aos-delay="100"><div class="stat-number" data-count="12">0</div><div class="stat-label">Năm kinh nghiệm</div></div>
+    <div class="col-md-3 col-6 mb-3" data-aos="fade-up" data-aos-delay="200"><div class="stat-number" data-count="500">0</div><div class="stat-label">Khách hàng</div></div>
+    <div class="col-md-3 col-6 mb-3" data-aos="fade-up" data-aos-delay="300"><div class="stat-number" data-count="50">0</div><div class="stat-label">Đội ngũ chuyên gia</div></div>
+  </div></div>
+</section>
+
+<% if (pressLogos.length) { %>
+<section class="section-press py-4">
+  <div class="container">
+    <h2 class="section-title text-center" data-aos="fade-up">Báo Chí Nói Về Chúng Tôi</h2>
+    <div class="owl-carousel press-carousel mt-3"><% pressLogos.forEach(p => { %><div class="item text-center"><img src="<%= p.logo %>" alt="<%= p.name %>" class="press-logo"></div><% }) %></div>
+  </div>
+</section>
+<% } %>
+
+<% if (partners.length) { %>
+<section class="section-partners py-4 bg-light">
+  <div class="container">
+    <h2 class="section-title text-center" data-aos="fade-up">Đối Tác</h2>
+    <div class="owl-carousel partners-carousel mt-3"><% partners.forEach(p => { %><div class="item text-center"><img src="<%= p.logo %>" alt="<%= p.name %>" class="partner-logo"></div><% }) %></div>
+  </div>
+</section>
+<% } %>

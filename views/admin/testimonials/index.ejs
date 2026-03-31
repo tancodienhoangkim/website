@@ -1,0 +1,28 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Đánh giá khách hàng</h2>
+  <a href="/admin/testimonials/create" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm mới</a>
+</div>
+<table class="table table-bordered bg-white">
+  <thead class="thead-light">
+    <tr><th>Avatar</th><th>Tên</th><th>Chức vụ</th><th>Nội dung</th><th>Thứ tự</th><th>Trạng thái</th><th width="150">Hành động</th></tr>
+  </thead>
+  <tbody>
+    <% testimonials.forEach(t => { %>
+    <tr>
+      <td><% if (t.avatar) { %><img src="<%= t.avatar %>" alt="" style="width:40px;height:40px;border-radius:50%;object-fit:cover;"><% } else { %><i class="fas fa-user-circle fa-2x text-muted"></i><% } %></td>
+      <td><%= t.name %></td>
+      <td><%= t.role || '—' %></td>
+      <td><%= t.content.substring(0, 80) %><%= t.content.length > 80 ? '...' : '' %></td>
+      <td><%= t.order %></td>
+      <td><span class="badge badge-<%= t.status === 'published' ? 'success' : 'secondary' %>"><%= t.status %></span></td>
+      <td>
+        <a href="/admin/testimonials/<%= t._id %>/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+        <form action="/admin/testimonials/<%= t._id %>?_method=DELETE" method="POST" class="d-inline" onsubmit="return confirm('Xóa?')">
+          <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+    <% if (!testimonials.length) { %><tr><td colspan="7" class="text-center text-muted">Chưa có đánh giá</td></tr><% } %>
+  </tbody>
+</table>

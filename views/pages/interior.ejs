@@ -1,0 +1,10 @@
+<section class="page-header" style="background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://picsum.photos/seed/interior/1920/400');background-size:cover;background-position:center;">
+  <div class="container text-center text-white py-5"><h1>Thiết kế nội thất</h1></div>
+</section>
+<section class="py-5"><div class="container">
+  <div class="row">
+    <% projects.forEach(p => { %><div class="col-md-4 mb-4"><%- include('../partials/project-card', { project: p }) %></div><% }) %>
+    <% if (!projects.length) { %><div class="col-12 text-center text-muted py-5">Chưa có dự án nào.</div><% } %>
+  </div>
+  <%- include('../partials/pagination', { currentPage, totalPages, query: { style } }) %>
+</div></section>

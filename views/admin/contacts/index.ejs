@@ -1,0 +1,25 @@
+<h2>Liên hệ đã nhận</h2>
+<table class="table table-bordered bg-white">
+  <thead class="thead-light">
+    <tr><th>Tên</th><th>SĐT</th><th>Email</th><th>Nội dung</th><th>Ngày gửi</th><th>Trạng thái</th><th width="150">Hành động</th></tr>
+  </thead>
+  <tbody>
+    <% contacts.forEach(c => { %>
+    <tr class="<%= !c.read ? 'table-warning' : '' %>">
+      <td><%= c.name %></td>
+      <td><%= c.phone %></td>
+      <td><%= c.email || '—' %></td>
+      <td><%= c.message.substring(0, 100) %><%= c.message.length > 100 ? '...' : '' %></td>
+      <td><%= c.createdAt.toLocaleDateString('vi-VN') %></td>
+      <td><% if (c.read) { %><span class="badge badge-success">Đã đọc</span><% } else { %><span class="badge badge-warning">Mới</span><% } %></td>
+      <td>
+        <% if (!c.read) { %><form action="/admin/contacts/<%= c._id %>/read?_method=PUT" method="POST" class="d-inline"><button class="btn btn-sm btn-info" title="Đánh dấu đã đọc"><i class="fas fa-check"></i></button></form><% } %>
+        <form action="/admin/contacts/<%= c._id %>?_method=DELETE" method="POST" class="d-inline" onsubmit="return confirm('Xóa?')">
+          <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+    <% if (!contacts.length) { %><tr><td colspan="7" class="text-center text-muted">Chưa có liên hệ</td></tr><% } %>
+  </tbody>
+</table>

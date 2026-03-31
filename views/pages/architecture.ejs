@@ -1,0 +1,20 @@
+<section class="page-header" style="background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://picsum.photos/seed/arch/1920/400');background-size:cover;background-position:center;">
+  <div class="container text-center text-white py-5"><h1>Thiết kế kiến trúc</h1></div>
+</section>
+<section class="py-5"><div class="container">
+  <div class="mb-4 text-center">
+    <a href="/thiet-ke-kien-truc" class="btn btn-sm <%= !style && !type ? 'btn-primary' : 'btn-outline-primary' %> mr-1 mb-1">Tất cả</a>
+    <a href="/thiet-ke-kien-truc?style=tan-co-dien" class="btn btn-sm <%= style === 'tan-co-dien' ? 'btn-primary' : 'btn-outline-primary' %> mr-1 mb-1">Tân cổ điển</a>
+    <a href="/thiet-ke-kien-truc?style=hien-dai" class="btn btn-sm <%= style === 'hien-dai' ? 'btn-primary' : 'btn-outline-primary' %> mr-1 mb-1">Hiện đại</a>
+    <a href="/thiet-ke-kien-truc?style=co-dien-phap" class="btn btn-sm <%= style === 'co-dien-phap' ? 'btn-primary' : 'btn-outline-primary' %> mr-1 mb-1">Cổ điển Pháp</a>
+    <span class="mx-2">|</span>
+    <a href="/thiet-ke-kien-truc?type=biet-thu" class="btn btn-sm <%= type === 'biet-thu' ? 'btn-primary' : 'btn-outline-primary' %> mr-1 mb-1">Biệt thự</a>
+    <a href="/thiet-ke-kien-truc?type=nha-pho" class="btn btn-sm <%= type === 'nha-pho' ? 'btn-primary' : 'btn-outline-primary' %> mr-1 mb-1">Nhà phố</a>
+    <a href="/thiet-ke-kien-truc?type=lau-dai" class="btn btn-sm <%= type === 'lau-dai' ? 'btn-primary' : 'btn-outline-primary' %> mr-1 mb-1">Lâu đài</a>
+  </div>
+  <div class="row">
+    <% projects.forEach(p => { %><div class="col-md-4 mb-4"><%- include('../partials/project-card', { project: p }) %></div><% }) %>
+    <% if (!projects.length) { %><div class="col-12 text-center text-muted py-5">Chưa có dự án nào.</div><% } %>
+  </div>
+  <%- include('../partials/pagination', { currentPage, totalPages, query: { style, type } }) %>
+</div></section>
