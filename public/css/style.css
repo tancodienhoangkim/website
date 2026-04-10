@@ -1,4 +1,4 @@
-:root{--primary:#2c3e50;--primary-light:#34495e;--accent:#c9a96e;--text:#333;--text-light:#666;--bg-light:#f8f9fa;--white:#fff}
+:root{--primary:#4E1111;--primary-light:#6B1E1E;--accent:#C9A55A;--text:#333;--text-light:#666;--bg-light:#f8f5f0;--white:#fff}
 body{font-family:'Open Sans',sans-serif;color:var(--text);line-height:1.7}
 h1,h2,h3,h4,h5{font-family:'Playfair Display',serif}
 a{color:var(--primary)}a:hover{color:var(--accent);text-decoration:none}
