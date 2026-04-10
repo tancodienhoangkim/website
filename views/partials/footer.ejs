@@ -15,10 +15,12 @@
       <div class="col-lg-4 mb-4">
         <h5 class="footer-title">Nhận tư vấn miễn phí</h5>
         <form class="footer-contact-form" id="footerContactForm">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <input type="text" name="name" class="form-control mb-2" placeholder="Họ tên *" required>
           <input type="tel" name="phone" class="form-control mb-2" placeholder="Số điện thoại *" required>
           <input type="email" name="email" class="form-control mb-2" placeholder="Email">
           <textarea name="message" class="form-control mb-2" rows="2" placeholder="Nội dung" required></textarea>
+          <% if (turnstileEnabled) { %><div id="footerTurnstile" class="cf-turnstile mb-2" data-sitekey="<%= turnstileSiteKey %>"></div><% } %>
           <button type="submit" class="btn btn-primary btn-block">Gửi yêu cầu</button>
           <div id="footerContactResult" class="mt-2"></div>
         </form>

@@ -18,6 +18,7 @@
       <td>
         <a href="/admin/testimonials/<%= t._id %>/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
         <form action="/admin/testimonials/<%= t._id %>?_method=DELETE" method="POST" class="d-inline" onsubmit="return confirm('Xóa?')">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
         </form>
       </td>

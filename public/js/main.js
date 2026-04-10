@@ -35,11 +35,14 @@ $(document).ready(function () {
     if ($(window).scrollTop() + $(window).height() > s.offset().top + 100) {
       counted = true;
       $('.stat-number').each(function () {
-        var $t = $(this), target = parseInt($t.data('count'), 10);
+        var $t = $(this);
+        var target = parseInt($t.data('count'), 10);
+        var suffix = $t.data('suffix') || '';
+        if (Number.isNaN(target)) return;
         $({ c: 0 }).animate({ c: target }, {
           duration: 2000, easing: 'swing',
-          step: function () { $t.text(Math.floor(this.c) + '+'); },
-          complete: function () { $t.text(target + '+'); },
+          step: function () { $t.text(Math.floor(this.c).toLocaleString('vi-VN') + suffix); },
+          complete: function () { $t.text(target.toLocaleString('vi-VN') + suffix); },
         });
       });
     }
@@ -57,12 +60,17 @@ $(document).ready(function () {
     $(sel).on('submit', function (e) {
       e.preventDefault();
       var $f = $(this), $btn = $f.find('[type="submit"]'), $r = $f.find(resultSel);
+      var originalHtml = $btn.html();
       $btn.prop('disabled', true).text('Đang gửi...');
       $.ajax({
         url: '/api/contact', method: 'POST', data: $f.serialize(), dataType: 'json',
         success: function (res) { $r.html('<div class="alert alert-success">' + res.message + '</div>'); $f[0].reset(); },
         error: function (xhr) { var m = xhr.responseJSON ? xhr.responseJSON.error : 'Có lỗi xảy ra'; $r.html('<div class="alert alert-danger">' + m + '</div>'); },
-        complete: function () { $btn.prop('disabled', false).html('<i class="fas fa-paper-plane"></i> Gửi'); },
+        complete: function () {
+          var $widget = $f.find('.cf-turnstile[id]');
+          if (window.turnstile && $widget.length) window.turnstile.reset('#' + $widget.attr('id'));
+          $btn.prop('disabled', false).html(originalHtml);
+        },
       });
     });
   }

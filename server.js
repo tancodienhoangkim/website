@@ -8,8 +8,11 @@ const methodOverride = require('method-override');
 const expressLayouts = require('express-ejs-layouts');
 const connectDB = require('./config/db');
 const Setting = require('./models/Setting');
+const { attachSecurityLocals } = require('./middleware/security');
 
 const app = express();
+app.disable('x-powered-by');
+app.set('trust proxy', 'loopback');
 
 // Connect to MongoDB
 connectDB();
@@ -32,11 +35,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Session
 app.use(session({
+  name: 'hoangkim.sid',
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
-  cookie: { maxAge: 1000 * 60 * 60 * 24 },
+  cookie: {
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24,
+    sameSite: 'lax',
+    secure: 'auto',
+  },
 }));
 
 // Make session data available in all views
@@ -58,6 +67,8 @@ app.use(async (req, res, next) => {
   }
   next();
 });
+
+app.use(attachSecurityLocals);
 
 // View engine
 app.set('view engine', 'ejs');

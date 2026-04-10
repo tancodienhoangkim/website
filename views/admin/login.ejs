@@ -9,6 +9,7 @@
       <div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> <%= error %></div>
     <% } %>
     <form action="/admin/login" method="POST">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
       <div class="form-group">
         <div class="input-icon">
           <i class="fas fa-user"></i>
@@ -21,6 +22,11 @@
           <input type="password" name="password" class="form-control" placeholder="Mật khẩu" required>
         </div>
       </div>
+      <% if (turnstileEnabled) { %>
+        <div class="form-group">
+          <div id="loginTurnstile" class="cf-turnstile" data-sitekey="<%= turnstileSiteKey %>"></div>
+        </div>
+      <% } %>
       <button type="submit" class="btn btn-login">
         <i class="fas fa-sign-in-alt"></i> Đăng nhập
       </button>

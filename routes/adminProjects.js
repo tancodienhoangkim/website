@@ -4,6 +4,7 @@ const Project = require('../models/Project');
 const Category = require('../models/Category');
 const upload = require('../middleware/upload');
 const { requireAuth } = require('../middleware/auth');
+const { requireCsrf } = require('../middleware/security');
 
 router.use(requireAuth);
 
@@ -17,7 +18,7 @@ router.get('/create', async (req, res) => {
   res.render('admin/projects/form', { layout: 'layouts/admin', title: 'Thêm dự án', project: null, categories });
 });
 
-router.post('/', upload.array('images', 20), async (req, res) => {
+router.post('/', requireCsrf, upload.array('images', 20), async (req, res) => {
   const { title, description, category, style, type, area, location, videoUrl, featured, order, status } = req.body;
   const images = req.files ? req.files.map(f => '/uploads/' + f.filename) : [];
   await Project.create({
@@ -36,7 +37,7 @@ router.get('/:id/edit', async (req, res) => {
   res.render('admin/projects/form', { layout: 'layouts/admin', title: 'Sửa dự án', project, categories });
 });
 
-router.put('/:id', upload.array('images', 20), async (req, res) => {
+router.put('/:id', requireCsrf, upload.array('images', 20), async (req, res) => {
   const project = await Project.findById(req.params.id);
   if (!project) return res.redirect('/admin/projects');
   const { title, description, category, style, type, area, location, videoUrl, featured, order, status, existingImages } = req.body;
@@ -60,7 +61,7 @@ router.put('/:id', upload.array('images', 20), async (req, res) => {
   res.redirect('/admin/projects');
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireCsrf, async (req, res) => {
   await Project.findByIdAndDelete(req.params.id);
   req.session.success = 'Đã xóa dự án';
   res.redirect('/admin/projects');

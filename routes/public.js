@@ -8,6 +8,19 @@ const Contact = require('../models/Contact');
 const Testimonial = require('../models/Testimonial');
 const Setting = require('../models/Setting');
 const transporter = require('../config/mail');
+const {
+  createRateLimiter,
+  getClientIp,
+  requireCsrf,
+  verifyTurnstileToken,
+} = require('../middleware/security');
+
+const contactRateLimit = createRateLimiter({
+  windowMs: 10 * 60 * 1000,
+  max: 5,
+  keyGenerator: (req) => `contact:${getClientIp(req)}`,
+  message: 'Bạn đã gửi quá nhiều yêu cầu trong thời gian ngắn. Vui lòng thử lại sau.',
+});
 
 router.get('/', async (req, res) => {
   const [services, featuredProjects, interiorProjects, constructionProjects, testimonials, posts, videosProjects] = await Promise.all([
@@ -97,7 +110,12 @@ router.get('/lien-he', (req, res) => {
   res.render('pages/contact', { layout: 'layouts/main', title: 'Liên hệ' });
 });
 
-router.post('/api/contact', async (req, res) => {
+router.post('/api/contact', contactRateLimit, requireCsrf, async (req, res) => {
+  const turnstileResult = await verifyTurnstileToken(req.body['cf-turnstile-response'], req);
+  if (!turnstileResult.success) {
+    return res.status(400).json({ error: 'Vui lòng xác minh bạn không phải robot.' });
+  }
+
   const { name, phone, email, message } = req.body;
   if (!name || !phone || !message) return res.status(400).json({ error: 'Vui lòng điền đầy đủ thông tin' });
   await Contact.create({ name, phone, email, message });

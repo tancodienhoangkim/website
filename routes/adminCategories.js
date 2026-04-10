@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Category = require('../models/Category');
 const { requireAuth } = require('../middleware/auth');
+const { requireCsrf } = require('../middleware/security');
 
 router.use(requireAuth);
 
@@ -15,7 +16,7 @@ router.get('/create', async (req, res) => {
   res.render('admin/categories/form', { layout: 'layouts/admin', title: 'Thêm danh mục', category: null, parents });
 });
 
-router.post('/', async (req, res) => {
+router.post('/', requireCsrf, async (req, res) => {
   const { name, type, parent, order } = req.body;
   await Category.create({ name, type, parent: parent || null, order: parseInt(order, 10) || 0 });
   req.session.success = 'Đã thêm danh mục';
@@ -29,7 +30,7 @@ router.get('/:id/edit', async (req, res) => {
   res.render('admin/categories/form', { layout: 'layouts/admin', title: 'Sửa danh mục', category, parents });
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', requireCsrf, async (req, res) => {
   const { name, type, parent, order } = req.body;
   const category = await Category.findById(req.params.id);
   if (!category) return res.redirect('/admin/categories');
@@ -42,7 +43,7 @@ router.put('/:id', async (req, res) => {
   res.redirect('/admin/categories');
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireCsrf, async (req, res) => {
   await Category.findByIdAndDelete(req.params.id);
   req.session.success = 'Đã xóa danh mục';
   res.redirect('/admin/categories');

@@ -1,6 +1,7 @@
 <h2><%= project ? 'Sửa' : 'Thêm' %> dự án</h2>
 <div class="card"><div class="card-body">
-  <form action="<%= project ? '/admin/projects/' + project._id + '?_method=PUT' : '/admin/projects' %>" method="POST" enctype="multipart/form-data">
+  <form action="<%= project ? '/admin/projects/' + project._id + '?_method=PUT&_csrf=' + encodeURIComponent(csrfToken) : '/admin/projects?_csrf=' + encodeURIComponent(csrfToken) %>" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <div class="form-group">
       <label>Tên dự án <span class="text-danger">*</span></label>
       <input type="text" name="title" class="form-control" value="<%= project ? project.title : '' %>" required>

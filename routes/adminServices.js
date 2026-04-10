@@ -3,6 +3,7 @@ const router = express.Router();
 const Service = require('../models/Service');
 const upload = require('../middleware/upload');
 const { requireAuth } = require('../middleware/auth');
+const { requireCsrf } = require('../middleware/security');
 
 router.use(requireAuth);
 
@@ -15,7 +16,7 @@ router.get('/create', (req, res) => {
   res.render('admin/services/form', { layout: 'layouts/admin', title: 'Thêm dịch vụ', service: null });
 });
 
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/', requireCsrf, upload.single('image'), async (req, res) => {
   const { title, description, icon, order, status } = req.body;
   const data = { title, description, icon, order: parseInt(order, 10) || 0, status };
   if (req.file) data.image = '/uploads/' + req.file.filename;
@@ -30,7 +31,7 @@ router.get('/:id/edit', async (req, res) => {
   res.render('admin/services/form', { layout: 'layouts/admin', title: 'Sửa dịch vụ', service });
 });
 
-router.put('/:id', upload.single('image'), async (req, res) => {
+router.put('/:id', requireCsrf, upload.single('image'), async (req, res) => {
   const service = await Service.findById(req.params.id);
   if (!service) return res.redirect('/admin/services');
   const { title, description, icon, order, status } = req.body;
@@ -45,7 +46,7 @@ router.put('/:id', upload.single('image'), async (req, res) => {
   res.redirect('/admin/services');
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireCsrf, async (req, res) => {
   await Service.findByIdAndDelete(req.params.id);
   req.session.success = 'Đã xóa dịch vụ';
   res.redirect('/admin/services');

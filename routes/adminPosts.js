@@ -4,6 +4,7 @@ const Post = require('../models/Post');
 const Category = require('../models/Category');
 const upload = require('../middleware/upload');
 const { requireAuth } = require('../middleware/auth');
+const { requireCsrf } = require('../middleware/security');
 
 router.use(requireAuth);
 
@@ -17,7 +18,7 @@ router.get('/create', async (req, res) => {
   res.render('admin/posts/form', { layout: 'layouts/admin', title: 'Thêm bài viết', post: null, categories });
 });
 
-router.post('/', upload.single('thumbnail'), async (req, res) => {
+router.post('/', requireCsrf, upload.single('thumbnail'), async (req, res) => {
   const { title, content, excerpt, category, tags, status } = req.body;
   const data = {
     title, content, excerpt, category: category || null,
@@ -37,7 +38,7 @@ router.get('/:id/edit', async (req, res) => {
   res.render('admin/posts/form', { layout: 'layouts/admin', title: 'Sửa bài viết', post, categories });
 });
 
-router.put('/:id', upload.single('thumbnail'), async (req, res) => {
+router.put('/:id', requireCsrf, upload.single('thumbnail'), async (req, res) => {
   const post = await Post.findById(req.params.id);
   if (!post) return res.redirect('/admin/posts');
   const { title, content, excerpt, category, tags, status } = req.body;
@@ -53,7 +54,7 @@ router.put('/:id', upload.single('thumbnail'), async (req, res) => {
   res.redirect('/admin/posts');
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireCsrf, async (req, res) => {
   await Post.findByIdAndDelete(req.params.id);
   req.session.success = 'Đã xóa bài viết';
   res.redirect('/admin/posts');

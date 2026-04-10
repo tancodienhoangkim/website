@@ -13,8 +13,9 @@
       <td><%= c.createdAt.toLocaleDateString('vi-VN') %></td>
       <td><% if (c.read) { %><span class="badge badge-success">Đã đọc</span><% } else { %><span class="badge badge-warning">Mới</span><% } %></td>
       <td>
-        <% if (!c.read) { %><form action="/admin/contacts/<%= c._id %>/read?_method=PUT" method="POST" class="d-inline"><button class="btn btn-sm btn-info" title="Đánh dấu đã đọc"><i class="fas fa-check"></i></button></form><% } %>
+        <% if (!c.read) { %><form action="/admin/contacts/<%= c._id %>/read?_method=PUT" method="POST" class="d-inline"><input type="hidden" name="_csrf" value="<%= csrfToken %>"><button class="btn btn-sm btn-info" title="Đánh dấu đã đọc"><i class="fas fa-check"></i></button></form><% } %>
         <form action="/admin/contacts/<%= c._id %>?_method=DELETE" method="POST" class="d-inline" onsubmit="return confirm('Xóa?')">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
         </form>
       </td>

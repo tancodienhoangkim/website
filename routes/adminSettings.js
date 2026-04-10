@@ -3,6 +3,7 @@ const router = express.Router();
 const Setting = require('../models/Setting');
 const upload = require('../middleware/upload');
 const { requireAuth } = require('../middleware/auth');
+const { requireCsrf } = require('../middleware/security');
 
 router.use(requireAuth);
 
@@ -11,7 +12,7 @@ router.get('/', async (req, res) => {
   res.render('admin/settings/index', { layout: 'layouts/admin', title: 'Cài đặt', settings });
 });
 
-router.put('/', upload.single('logo'), async (req, res) => {
+router.put('/', requireCsrf, upload.single('logo'), async (req, res) => {
   const fields = [
     { key: 'siteName', group: 'general' },
     { key: 'phone', group: 'general' },

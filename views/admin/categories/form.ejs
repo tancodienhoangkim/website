@@ -1,6 +1,7 @@
 <h2><%= category ? 'Sửa' : 'Thêm' %> danh mục</h2>
 <div class="card"><div class="card-body">
   <form action="<%= category ? '/admin/categories/' + category._id + '?_method=PUT' : '/admin/categories' %>" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <div class="form-group">
       <label>Tên danh mục <span class="text-danger">*</span></label>
       <input type="text" name="name" class="form-control" value="<%= category ? category.name : '' %>" required>

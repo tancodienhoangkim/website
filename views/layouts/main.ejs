@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <% if (turnstileEnabled) { %><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script><% } %>
 </head>
 <body>
   <%- include('../partials/header') %>
