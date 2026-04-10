@@ -5,6 +5,7 @@ const session = require('express-session');
 const { MongoStore } = require('connect-mongo');
 const helmet = require('helmet');
 const methodOverride = require('method-override');
+const expressLayouts = require('express-ejs-layouts');
 const connectDB = require('./config/db');
 const Setting = require('./models/Setting');
 
@@ -61,6 +62,8 @@ app.use(async (req, res, next) => {
 // View engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use(expressLayouts);
+app.set('layout', 'layouts/main');
 
 // Routes
 app.use('/admin/categories', require('./routes/adminCategories'));
@@ -75,13 +78,13 @@ app.use('/', require('./routes/public'));
 
 // 404 handler
 app.use((req, res) => {
-  res.status(404).render('pages/404', { title: '404 - Không tìm thấy trang' });
+  res.status(404).render('pages/404', { layout: false, title: '404 - Không tìm thấy trang' });
 });
 
 // Error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).render('pages/500', { title: 'Lỗi server' });
+  res.status(500).render('pages/500', { layout: false, title: 'Lỗi server' });
 });
 
 const PORT = process.env.PORT || 3000;

@@ -9,11 +9,10 @@ const categorySchema = new mongoose.Schema({
   order: { type: Number, default: 0 },
 });
 
-categorySchema.pre('save', function (next) {
+categorySchema.pre('save', function () {
   if (this.isModified('name')) {
     this.slug = slugify(this.name, { lower: true, strict: true });
   }
-  next();
 });
 
 module.exports = mongoose.model('Category', categorySchema);

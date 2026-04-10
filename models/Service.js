@@ -11,11 +11,10 @@ const serviceSchema = new mongoose.Schema({
   status: { type: String, enum: ['draft', 'published'], default: 'draft' },
 });
 
-serviceSchema.pre('save', function (next) {
+serviceSchema.pre('save', function () {
   if (this.isModified('title')) {
     this.slug = slugify(this.title, { lower: true, strict: true });
   }
-  next();
 });
 
 module.exports = mongoose.model('Service', serviceSchema);
