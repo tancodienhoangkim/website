@@ -13,6 +13,7 @@ export const SiteSettings: GlobalConfig = {
     { name: 'email', type: 'email' },
     { name: 'address', type: 'textarea' },
     { name: 'hours', type: 'text', admin: { description: 'e.g., 8:00 - 17:30, Mon-Sat' } },
+    { name: 'mapEmbedUrl', type: 'text', admin: { description: 'Google Maps embed URL (lấy từ Google Maps → Share → Embed a map → copy src)' } },
     {
       name: 'social',
       type: 'group',

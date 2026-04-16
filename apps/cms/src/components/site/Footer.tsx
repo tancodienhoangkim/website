@@ -143,7 +143,18 @@ export async function Footer() {
               <div className="section-map">
                 <div className="title-menu-ft">BẢN ĐỒ</div>
                 <div className="content-map">
-                  {/* map image placeholder — replace map.jpg when ready */}
+                  {s?.mapEmbedUrl ? (
+                    <iframe
+                      src={s.mapEmbedUrl}
+                      width="100%"
+                      height="250"
+                      style={{ border: 0, display: 'block' }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Bản đồ Tân cổ điển Hoàng Kim"
+                    />
+                  ) : null}
                 </div>
               </div>
             </div>
