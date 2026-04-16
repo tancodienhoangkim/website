@@ -13,7 +13,7 @@ export type CtaBlock = {
 export function LeadCaptureBanner({ data }: { data?: CtaBlock }): ReactNode {
   if (!data || !data.image?.url) return null;
   return (
-    <div id="content-row-199" className="nh-row py-30">
+    <div id="content-row-199" className="nh-row py-30" style={{ marginTop: '60px', marginBottom: '60px' }}>
       <div className="row">
         <div className="col-sm-12 col-xs-12">
           <div className="banner-register">

@@ -143,20 +143,7 @@ export async function Footer() {
               <div className="section-map">
                 <div className="title-menu-ft">BẢN ĐỒ</div>
                 <div className="content-map">
-                  <a
-                    href="https://maps.google.com/?q=Số+81+đường+Vạn+Phúc,+Hà+Đông,+Hà+Nội"
-                    target="_blank"
-                    rel="nofollow noreferrer"
-                    aria-label="Bản đồ đường đi đến Tân cổ điển Hoàng Kim"
-                  >
-                    <Image
-                      src="/vendor/images/map.jpg"
-                      alt="Bản đồ đường đi đến Tân cổ điển Hoàng Kim"
-                      width={400}
-                      height={250}
-                      style={{ width: '100%', height: 'auto' }}
-                    />
-                  </a>
+                  {/* map image placeholder — replace map.jpg when ready */}
                 </div>
               </div>
             </div>

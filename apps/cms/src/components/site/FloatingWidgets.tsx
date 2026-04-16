@@ -8,6 +8,7 @@ import {
   PaperPlane,
   Phone,
   Youtube,
+  Zalo,
 } from '../icons';
 
 export async function FloatingWidgets() {
@@ -85,7 +86,7 @@ export async function FloatingWidgets() {
               rel="nofollow noreferrer"
               aria-label="Zalo Tân cổ điển Hoàng Kim"
             >
-              <span>Zalo</span>
+              <Zalo size={18} className="icon-on-gold" />
             </a>
           </div>
         </div>
@@ -105,7 +106,7 @@ export async function FloatingWidgets() {
               rel="nofollow noreferrer"
               aria-label="Zalo Tân cổ điển Hoàng Kim"
             >
-              <Comments size={20} />
+              <Zalo size={20} className="icon-on-gold" />
               <span>Zalo</span>
             </a>
           </li>
@@ -116,7 +117,7 @@ export async function FloatingWidgets() {
               rel="nofollow"
               aria-label="Hotline Tân cổ điển Hoàng Kim"
             >
-              <Phone size={20} />
+              <Phone size={20} className="icon-on-gold" />
               <span>Hotline</span>
             </a>
           </li>
@@ -128,7 +129,7 @@ export async function FloatingWidgets() {
               rel="nofollow noreferrer"
               target="_blank"
             >
-              <Headphones size={20} />
+              <Headphones size={20} className="icon-on-gold" />
               <span>Y/c Gọi lại</span>
             </a>
           </li>
