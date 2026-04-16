@@ -19,6 +19,7 @@ function extractOgImage(img: unknown): string | undefined {
   return x.url;
 }
 
+export const dynamicParams = true;
 export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
   const payload = await getPayload({ config });
   const res = await payload.find({
