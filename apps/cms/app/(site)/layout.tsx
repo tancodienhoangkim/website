@@ -47,7 +47,7 @@ const VENDOR_CSS = [
   '/vendor/css/css_custom.css',
 ];
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
   const popup = await loadPromo();
