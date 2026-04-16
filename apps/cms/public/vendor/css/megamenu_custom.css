@@ -1,0 +1,248 @@
+body {
+    background-color: #fff;
+}
+.wsmenu-list > li > .navtext {
+    padding: 0 10px;
+    font-weight: 600;
+}
+.wstitemright{
+    padding: 15px ;
+}
+.wstmegamenucolr + .wstmegamenucoll {
+    padding-right: 0;
+    padding-left: 27px;
+}
+.wsmenu-list > li > .navtext > span,
+.wstheading,
+.wstmenutag,
+.wstliststy01 li a,
+.wstliststy02 li a,
+.wstliststy03 li a,
+.wstliststy04 li a,
+.wstliststy05 li a,
+.wstliststy06 li a {
+    font-size: 13px;
+}
+.wstliststy01 li a,
+.wstliststy02 li a,
+.wstliststy03 li a,
+.wstliststy04 li a,
+.wstliststy05 li a,
+.wstliststy06 li a {
+    text-transform: unset;
+}
+.wstliststy03 {
+    float: left;
+}
+.custom-col-1 {
+    width: 100%;
+    padding: 0px 20px 0px 0px;
+    margin: 0px;
+    float: left;
+    text-align:left;
+}
+.custom-col-1 li {
+    width: 100%;
+    list-style: none;
+    line-height: 22px;
+}
+.wstliststy02:nth-child(5n+1) {
+    clear: both;
+}
+
+.wstliststy05:nth-child(3n+1) {
+    clear: both;
+}
+
+.wstliststy06:nth-child(2n+1) {
+    clear: both;
+}
+.banner-right-col-1, .banner-left-col-1 {
+    width: 25%;
+}
+.menu-col-1 {
+    width: 75%;
+}
+.wsmenu-list > li > a {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+}
+.wsmenu-list > li:hover > a {
+    color: #fff;
+}
+.menu-title:hover ~ .wsshopwp ul.wstabitem, ul.wstabitem:hover {
+    display: block !important;
+}
+.menu-title ~ .wsshopwp ul.wstabitem {
+    position:  absolute;
+}
+.menu-title {
+    font-size: 18px;
+    text-transform:  uppercase;
+    height:  40px;
+    line-height:  40px;
+    padding:  0 15px;
+    background: #ed1c25;
+}
+.menu-title a {
+    color: #fff;
+}
+@media only screen and (max-width: 919px) {
+    .webslidemenu-vatical .wstabitem {
+        display: block !important;
+    }
+    .wstabitem > li {
+        float: inherit
+    }
+    .wstheading{ padding-left:0px; padding-right:0px; }
+    .wstliststy06 {
+        width: 100%;
+        padding: 0px;
+        margin-bottom: 10px;
+    }
+    .webslidemenu-vatical .wsmenu-list .wsshoptabing > .wsmenu-click {
+        display: none;
+    }
+    .webslidemenu-horizontal .wstliststy01 > li > a,
+    .webslidemenu-horizontal .wstliststy02 > li > a,
+    .webslidemenu-horizontal .wstliststy03 > li > a,
+    .webslidemenu-horizontal .wstliststy04 > li > a,
+    .webslidemenu-horizontal .wstliststy05 > li > a,
+    .webslidemenu-horizontal .wstliststy06 > li > a,
+    .webslidemenu-horizontal .wstheading > a {
+        padding: 14px 11px 14px 18px;
+    }
+    .wsmain {
+        z-index: 1010;
+    }
+    .ws-menu .container {
+        position: relative;
+    }
+}
+.wsmenu-list li:hover .navtext{
+    background: -webkit-linear-gradient(135deg, #F1E075, #AE7F41AE7F41);
+    background: linear-gradient(to right, #F1E075 0%, #AE7F41 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+.wsmenu-submenu li:hover>a{
+    color: #ed1c24;
+}
+.wsmenu-submenu li a{
+    font-size: 13px;
+    padding: 5px 10px;
+    border-bottom: none !important;
+    letter-spacing: 1px;
+}
+.banner-mega-top img{
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+.wstheading a{
+    color: #fff;
+    font-size: 12px;
+}
+.wstheading:hover a{
+    background: -webkit-linear-gradient(135deg, #F1E075, #AE7F41AE7F41);
+    background: linear-gradient(to right, #F1E075 0%, #AE7F41 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+.megamenu{
+    z-index: 999 !important;
+}
+.wtsdepartmentmenu{
+    z-index: 9999 !important;
+}
+@media(min-width: 1024px){
+    .wsmenu-list > li > .navtext{
+        margin: 0px !important;
+    }
+    .nav-right .dropdown-toggle{
+        line-height: 50px;
+    }
+}
+.wstliststy06 li a:hover,
+.wsmenu-submenu-sub>li>a:hover,
+.wsmenu-submenu li>a:hover,
+.wstliststy03>li>a:hover,
+.wstliststy01>li>a:hover,
+.wstliststy02>li>a:hover,
+.wstliststy04>li>a:hover,
+.wstliststy05>li>a:hover,
+.wstliststy06>li>a:hover,
+.wsshoptabing.wtsdepartmentmenu .wstabitem>li:hover>a
+{color: #d6b960;font-weight: bold;}
+.wsshoptabing.wtsdepartmentmenu .wstabitem>li>a{font-weight: bold;}
+.wsshopwp{height:auto !important;}
+.wstabitem{width: 27%;}
+.wstitemright{right: auto;left:27%}
+.wstheading{padding-bottom: 16px;padding-top: 1px;}
+.wstliststy03,.wstliststy01,.wstliststy02,.wstliststy04,.wstliststy05,.wstliststy06{margin-bottom: 8px;}
+.megamenu .wstheading{
+    padding-bottom:  5px;
+}
+.wsshoptabing.wtsdepartmentmenu .wstabitem li.dropdown .wsmenu-submenu li a{
+    padding: 13.5px 12px;
+}
+@media(max-width:1199px){
+    .animated-arrow{position: static;display:  block;margin-left: 0;}
+    .wsoffcanvasopener .animated-arrow{position:fixed;}
+    .dropdown.has-children>.wsmenu-submenu>li>a, .wsmenu-submenu-sub>li>a{
+        padding: 5px 10px;
+    }
+    .wsmenu-list > li:hover > a{color:#333;}
+    .wsmenu-list .megamenu{padding-top:15px;}
+    .wsmenucontainer.wsoffcanvasopener .animated-arrow{
+        margin-left: 15px;
+    }
+    .wsmenu-list .megamenu{
+        background-color:transparent;
+    }
+    .wsmenu-list > li:hover>a,
+    .wsmenu-click02,
+    .wsmenu .wsmenu-list > li,
+    .mobile-sub .wsmenu-submenu li a,
+    .mobile-sub .wsmenu-submenu li .wsmenu-submenu-sub li a,
+    .wstitemright{background-color:transparent !important;;}
+}
+@media(min-width: 1024px){
+    .wsmenu-list > li > a{
+        line-height: 50px;
+    }
+}
+.wsmain img{
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media(max-width: 1180px){
+    .animated-arrow span, .animated-arrow span:before, .animated-arrow span:after{
+        background: #dabe63;
+    }
+    .mobile-sub .wsmenu-submenu li a{
+        color: #ffffff;
+    }
+}
+@media(max-width: 768px){
+    .megamenu .wstliststy03,
+    .megamenu .wstliststy06{
+        border-bottom: 1px solid;
+        border-bottom-color: rgba(0,0,0,0.13);
+    }
+    .wstliststy03:last-child .wstheading,
+    .wstliststy01:last-child .wstheading,
+    .wstliststy02:last-child .wstheading,
+    .wstliststy04:last-child .wstheading,
+    .wstliststy05:last-child .wstheading,
+    .wstliststy06:last-child .wstheading,
+    .wstliststy06:last-child,
+    .wstliststy03:last-child{
+        border-bottom:0
+    }
+    .wsmenu-submenu-sub .wsmenu-click02{border-left:0;}
+}

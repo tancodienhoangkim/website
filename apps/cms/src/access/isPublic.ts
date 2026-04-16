@@ -1,0 +1,1 @@
+export { isPublic } from './isAdmin';

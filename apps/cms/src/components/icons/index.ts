@@ -1,0 +1,17 @@
+export { IconGradientDefs } from './IconGradientDefs';
+export { Phone } from './Phone';
+export { Search } from './Search';
+export { AngleDown } from './AngleDown';
+export { PaperPlane } from './PaperPlane';
+export { Gift } from './Gift';
+export { ArrowRight } from './ArrowRight';
+export { Comments } from './Comments';
+export { Headphones } from './Headphones';
+export { MapMarker } from './MapMarker';
+export { Envelope } from './Envelope';
+export { Facebook } from './Facebook';
+export { Youtube } from './Youtube';
+export { Instagram } from './Instagram';
+export { Tiktok } from './Tiktok';
+export { Zalo } from './Zalo';
+export { Messenger } from './Messenger';
