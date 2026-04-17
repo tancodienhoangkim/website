@@ -1,4 +1,8 @@
 import type { CollectionConfig } from 'payload';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -14,6 +18,7 @@ export const Media: CollectionConfig = {
     delete: ({ req }) => req.user?.role === 'admin',
   },
   upload: {
+    staticDir: path.resolve(dirname, '../../public/media'),
     mimeTypes: ['image/*', 'video/mp4', 'application/pdf'],
     imageSizes: [
       { name: 'thumb', width: 150, height: 150, position: 'centre' },
