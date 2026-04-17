@@ -1073,9 +1073,10 @@ span.icon {
 .banner-register .content-register p {
     font-size: 28px;
     font-weight: 700;
-    color: #083943;
+    color: #fff;
     margin-bottom: 0;
     font-family: serif;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 .banner-register .content-register .link-banner a {
