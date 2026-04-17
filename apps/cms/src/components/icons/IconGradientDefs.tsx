@@ -9,8 +9,8 @@ export function IconGradientDefs() {
     >
       <defs>
         <linearGradient id="icon-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#F1E075" />
-          <stop offset="100%" stopColor="#AE7F41" />
+          <stop offset="0%" stopColor="#FFE066" />
+          <stop offset="100%" stopColor="#D4A827" />
         </linearGradient>
       </defs>
     </svg>
