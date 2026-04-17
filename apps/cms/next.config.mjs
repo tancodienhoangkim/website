@@ -39,6 +39,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: '**.r2.cloudflarestorage.com' },
       { protocol: 'https', hostname: '**.amazonaws.com' },
+      { protocol: 'https', hostname: 'hoangkim-tcd.com' },
       { protocol: 'http',  hostname: 'localhost', port: '3000' },
       { protocol: 'http',  hostname: 'localhost', port: '3001' },
       { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
