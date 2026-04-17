@@ -6176,7 +6176,8 @@ element.style {
    Add .icon-on-gold when rendering over a gold-gradient background
    (FloatingWidgets cluster buttons, .button_gift_box). */
 .icon-on-gold {
-    stroke: var(--text-on-gold) !important;
+    stroke: var(--gold-mid) !important;
+    color: var(--gold-mid);
 }
 
 /* Plan A — S3 Services grid ---------------------------------------- */
